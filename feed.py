@@ -15,34 +15,33 @@ import re
 import os.path
 
 
-
+def write_log(logfile):
+	f = open(str(logfile),'a')
+	#f.writelines(count + "  " + url+ '\n')
+	f.writelines('yah!' + '\n')
+	f.close() 
 
 #main yo
 def main():
-	filename, Mode , noise, footprint, smart, fpok, bad, learn = cmd_options() 
+	# filename, Mode , noise, footprint, smart, fpok, bad, learn = cmd_options() 
 
-	if filename == None: # then a list was not specfied
-		url = get_url() # request user input, return status code		
-		begin(url) #research 
-
-	else:# grab the list and get busy
-		logfile = filename + "_log"
-		f = codecs.open(filename,'r',"utf-8-sig")
-		count = 0
-		for line in f:
-			url = str(line).strip()	
-			write_logfile(str(count),url,logfile)
-			# url = urlparse(url)
-			# url = url.get_url()					
-			if url != "": 
-				begin(url) #research 
-				count = count + 1
-		f.close()
+	
+	#load URL's, move to seperate def soon
+	exc = {}
+	#Exchange Name, URL
+	exc[0] = {"test1",""}
+	exc[1] = {"test2"," "}
+	exc[2] = {"test3",""}
+	
+	
+	for i in exc:
+		logfile = str(i[1]) + "_log"
+		write_log(logfile)
+		# exc[i] =  		
+		# begin(url) #research 
 
 
-
-
-
+/* 
 def cmd_options():
 	parser = OptionParser()
 	parser.add_option("-f", dest="filename", help="file name to read url's from", metavar="url_list.txt")
@@ -55,6 +54,24 @@ def cmd_options():
 	parser.add_option("--bad", action="store_true", help="Enable Byte Anomaly Detection.")
 	(options, args) = parser.parse_args()
 	return (options.filename, options.mode, options.v, options.g, options.s, options.fpok, options.bad, options.l)
+*/
+
+
+class bcolors:
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'
+
+    def disable(self):
+        self.HEADER = ''
+        self.OKBLUE = ''
+        self.OKGREEN = ''
+        self.WARNING = ''
+        self.FAIL = ''
+        self.ENDC = ''
 
 
 # Ready Begin
