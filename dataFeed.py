@@ -39,7 +39,7 @@ def main():
         while True:
                 
                 #Here is where we go out and pull back the data for each Excahnge/Tracker 
-                #you will need to add your our API URL's for now
+                #you will need to add your oun API URL's for now
                 
                 ## Exchange #1 
                 try:
@@ -50,7 +50,8 @@ def main():
                         write_log(logfile, html, exc1[0])      
                 except:
                         print 'Failed on exchange 1'  
-                
+                        break 
+                       
                 #Exchange #2
                 try:
                         r = requests.get(exc2[1])
@@ -60,7 +61,8 @@ def main():
                         write_log(logfile, html, exc2[0])      
                 except:
                         print 'Failed on exchange 2'
- 
+                        break 
+                       
                 ##Exchange #3
                 try:
                         r = requests.get(exc3[1])
@@ -70,11 +72,12 @@ def main():
                         write_log(logfile, html, exc3[0])      
                 except:
                         print 'Failed on exchange 3'
-               
+                        break
+
                 # paremeterize
                 time.sleep(15)
- 
-           
+                  
+                            
  
 #def cmd_options():
 #       parser = OptionParser()
