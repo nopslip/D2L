@@ -5,15 +5,14 @@ import sys
 import codecs
 from optparse import OptionParser
 from urlparse import urlparse
-import sqlite3 as lite
 import sys
 import time
-import simplejson as json
 import hashlib
 import datetime
 import re
 import os.path
- 
+
+# import simplejson as json 
  
 def write_log(logfile, html, exn):
         ensure_dir(logfile)    
@@ -27,25 +26,32 @@ def ensure_dir(f):
     if not os.path.exists(d):
         os.makedirs(d)
  
- 
- 
+def load_URIs()
+        exc1 = ['BTC-E', 'updateMe']
+        exc2 = ['Bitstamp', 'xxx??xxx']
+        exc3 = ['Huobi', 'xxxxx?']
+        return(exc1, exc2, exc3) 
+        
 #main yo
 def main():
         # filename, Mode , noise, footprint, smart, fpok, bad, learn = cmd_options()
        
         while True:
- 
-                exc1 = ['BTC-E', 'xx??xxx']
+                
+                #Here is where we go out and pull back the data for each Excahnge/Tracker 
+                #you will need to add your our API URL's for now
+                
+                ## Exchange #1 
                 try:
                         r = requests.get(exc1[1])
                         html = r.text
-                        #additional processing?
+                        #insert reGex processing module is necessary 
                         logfile = ("./log/" + exc1[0] + "_log")
                         write_log(logfile, html, exc1[0])      
                 except:
-                        print 'problem!'  
-               
-                exc2 = ['Bitstamp', 'xxx??xxx']
+                        print 'Failed on exchange 1'  
+                
+                #Exchange #2
                 try:
                         r = requests.get(exc2[1])
                         html = r.text
@@ -53,9 +59,9 @@ def main():
                         logfile = ("./log/" + exc2[0] + "_log")
                         write_log(logfile, html, exc2[0])      
                 except:
-                        print 'problem2"
+                        print 'Failed on exchange 2'
  
-                exc3 = ['Huobi', 'xxxxx?']
+                ##Exchange #3
                 try:
                         r = requests.get(exc3[1])
                         html = r.text
@@ -63,12 +69,12 @@ def main():
                         logfile = ("./log/" + exc3[0] + "_log")
                         write_log(logfile, html, exc3[0])      
                 except:
-                        print 'problem3"
+                        print 'Failed on exchange 3'
                
                 # paremeterize
-                time.sleep(10)
+                time.sleep(15)
  
-               
+           
  
 #def cmd_options():
 #       parser = OptionParser()
